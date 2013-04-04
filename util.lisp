@@ -138,4 +138,4 @@ itself."
         (cond ,@body))
       (end-of-file ()
         ,@eof-forms
-        (return-from html-extract)))))
+        (return-from html-extract-from-standard)))))
