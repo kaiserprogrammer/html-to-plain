@@ -27,7 +27,14 @@
 ;;; NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 ;;; SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-(in-package #:html-extract)
+(in-package #:html-to-plain)
+
+(defun remove-html-noise (str)
+  (regex-replace-all "(?s)(<a.*?>|</a>|<script.*?>.*?</script>|<fb.*?>.*?</fb.*?>|<style.*?>.*?</style>|<lang.*?>|</lang.*?>|<html.*?>|</html>)" str ""))
+
+(defun extract-text (html)
+  "Extracts plain text from string HTML"
+  (html-extract (remove-html-noise html)))
 
 (defun html-extract (&optional stream-or-string)
   "Reads a \(X)HTML document from *STANDARD-INPUT* and writes it back
@@ -289,6 +296,3 @@ input."
           (t
            ;; anything else means this is just #\<, no markup
            (write-char #\<)))))))
-
-
-#+:build (html-extract)

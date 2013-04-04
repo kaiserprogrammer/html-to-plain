@@ -29,6 +29,6 @@
 
 (in-package #:cl-user)
 
-(defpackage #:html-extract
-  (:use #:cl)
-  (:export #:html-extract))
+(defpackage #:html-to-plain
+  (:use #:cl #:cl-ppcre)
+  (:export #:html-extract #:extract-text))
